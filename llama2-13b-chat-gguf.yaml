@@ -1,0 +1,48 @@
+name: "llama2-13b-chat-gguf"
+
+description: |
+  Llama 2 13b chat in gguf format.
+  Llama 2 is a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters.. 
+
+license: "https://ai.meta.com/llama/license/"
+urls:
+- https://ai.meta.com/llama/
+- https://huggingface.co/TheBloke/Llama-2-13b-Chat-GGUF
+
+config_file: |
+  name: llama2-13b-chat-gguf
+  backend: "llama"
+  parameters:
+    top_k: 80
+    temperature: 0.2
+    top_p: 0.7
+  context_size: 4096
+  roles:
+    function: 'Function Result:'
+    assistant_function_call: 'Function Call:'
+    assistant: 'Assistant:'
+    user: 'User:'
+    system: 'System:'
+  template:
+    chat_message: llama2-13b-chat-gguf-chat
+  system_prompt: "You are a helpful, respectful and honest assistant. Always answer as helpfully
+  as possible, while being safe.  Your answers should not include any harmful,
+  unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure
+  that your responses are socially unbiased and positive in nature. If a
+  question does not make any sense, or is not factually coherent, explain why
+  instead of answering something not correct. If you don't know the answer to a
+  question, please don't share false information"
+
+prompt_templates:
+- name: "llama2-13b-chat-gguf-chat"
+  content: |
+    [INST]
+    {{if .SystemPrompt}}<<SYS>>{{.SystemPrompt}}<</SYS>>{{end}}
+    {{if .Input}}{{.Input}}{{end}}
+    [/INST] 
+
+    Assistant: 
+files:
+- filename: "llama-2-13b-chat.Q4_K_M.gguf"
+  sha256: "7ddfe27f61bf994542c22aca213c46ecbd8a624cca74abff02a7b5a8c18f787f"
+  uri: "https://huggingface.co/TheBloke/Llama-2-13b-Chat-GGUF/resolve/main/llama-2-13b-chat.Q4_K_M.gguf"

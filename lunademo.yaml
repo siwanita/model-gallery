@@ -1,0 +1,30 @@
+name: "lunademo"
+
+description: |
+  This is a model used for the lunademo on the localai how tos - THIS MODEL YAML FILE IS NOT READY YET, PLEASE USE THE ONE ON THE HOW TO, THANK YOU!
+
+license: "https://ai.meta.com/llama/license/"
+urls:
+- https://localai.io/howtos/easy-setup-full/
+
+config_file: |
+  backend: llama
+  context_size: 4096
+  f16: true
+  gpu_layers: 4
+  threads: 4
+  low_vram: true
+  mmap: false
+  mmlock: false
+  name: lunademo
+  parameters:
+    temperature: 0.2
+  template:
+    chat_message: llama2-chat-message
+
+prompt_templates:
+- name: "llama2-chat-message"
+  content: |
+    {{.Input}}
+
+    ASSISTANT:
